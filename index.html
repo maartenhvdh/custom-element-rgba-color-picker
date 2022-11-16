@@ -41,7 +41,7 @@
     <script>
         $(document).ready(function () {
             CustomElement.init((element, _context) => {
-                CustomElement.setHeight(150);
+                CustomElement.setHeight(300);
             });
         });
     </script>
@@ -93,7 +93,9 @@
                         .toString();
                     //console.log("change", current_color);
                     $input.val(current_color).trigger("change");
-                    CustomElement.setValue($input.val);
+                CustomElement.setValue(color
+                        .toRGBA()
+                        .toString(3));
                 });
             //
         });
