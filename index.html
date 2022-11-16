@@ -43,7 +43,7 @@
             var $input = $("input.pickr-field");
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
-                $input.val(element.value)
+                $input.val(element.value).trigger("change");
             });
         });
     </script>
