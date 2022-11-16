@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb"
+    class="en js csstransforms csstransforms3d csstransitions">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> Custom Element - Accessibility Checker</title>
+    <!-- Kentico Custom elements API-->
+    <link rel="stylesheet" href="custom-element.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <script src="https://app.kontent.ai/js-api/custom-element/v1/custom-element.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/rxjs@6.4.0/bundles/rxjs.umd.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@kentico/kontent-delivery/_bundles/kontent-delivery.browser.umd.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+    <!-- 'classic' theme -->
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
+</head>
+
+<body>
+    <br />
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="ui sixteen column">
+                <label for="color">Choose Color:</label>
+                <div class="pickr"></div>
+                <input type="input" class="pickr-field" value="#FF0000" name="color"></input>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            CustomElement.init((element, _context) => {
+                CustomElement.setHeight(150);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //
+            var $input = $("input.pickr-field");
+            var current_color = $(".pickr-field").val() || null;
+            //
+            var pickr = new Pickr({
+                el: $(".pickr")[0],
+                theme: "classic",
+                swatches: null,
+                defaultRepresentation: "HEXA",
+                default: current_color,
+                comparison: false,
+                components: {
+                    preview: true,
+                    opacity: true,
+                    hue: true,
+                    interaction: {
+                        hex: true,
+                        rgba: true,
+                        hsva: false,
+                        input: true,
+                        clear: true,
+                        cancel: true,
+                        save: true
+                    }
+                }
+            });
+            //
+            pickr
+                .on("clear", function (instance) {
+                    //console.log("clear");
+                    $input.val("").trigger("change");
+                })
+                .on("cancel", function (instance) {
+                    current_color = instance
+                        .getSelectedColor()
+                        .toHEXA()
+                        .toString();
+                    //console.log("cancel", current_color);
+                    $input.val(current_color).trigger("change");
+                })
+                .on("change", function (color, instance) {
+                    current_color = color
+                        .toHEXA()
+                        .toString();
+                    //console.log("change", current_color);
+                    $input.val(current_color).trigger("change");
+                    CustomElement.setValue($input.val);
+                });
+            //
+        });
+    </script>
+</body>
+
+</html>
