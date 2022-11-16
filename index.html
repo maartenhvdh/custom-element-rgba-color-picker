@@ -33,7 +33,7 @@
             <div class="ui sixteen column">
                 <label for="color">Choose Color:</label>
                 <div class="pickr"></div>
-                <input type="input" class="pickr-field" value="#FF0000" name="color"></input>
+                <input type="input" class="pickr-field" value="rgba(255, 0, 0, 1)" name="color"></input>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             var $input = $("input.pickr-field");
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
-                $input.val(element.value.toHEXA().toString()).trigger("change");
+                $input.val(element.value)
             });
         });
     </script>
@@ -57,7 +57,7 @@
                 el: $(".pickr")[0],
                 theme: "classic",
                 swatches: null,
-                defaultRepresentation: "HEXA",
+                defaultRepresentation: "RGBA",
                 default: current_color,
                 comparison: false,
                 components: {
@@ -84,14 +84,14 @@
                 .on("cancel", function (instance) {
                     current_color = instance
                         .getSelectedColor()
-                        .toHEXA()
+                        .toRGBA()
                         .toString();
                     //console.log("cancel", current_color);
                     $input.val(current_color).trigger("change");
                 })
                 .on("change", function (color, instance) {
                     current_color = color
-                        .toHEXA()
+                        .toRGBA()
                         .toString();
                     //console.log("change", current_color);
                     $input.val(current_color).trigger("change");
