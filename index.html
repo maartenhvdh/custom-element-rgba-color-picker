@@ -43,7 +43,7 @@
             var $input = $("input.pickr-field");
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
-                $input.val(element.value).trigger("change");
+                $input.val(element.value.toHEXA().toString()).trigger("change");
             });
         });
     </script>
@@ -57,7 +57,7 @@
                 el: $(".pickr")[0],
                 theme: "classic",
                 swatches: null,
-                defaultRepresentation: "RGBA",
+                defaultRepresentation: "HEXA",
                 default: current_color,
                 comparison: false,
                 components: {
