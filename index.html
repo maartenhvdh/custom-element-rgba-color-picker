@@ -44,6 +44,29 @@
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
                 $input.val(element.value).trigger("change");
+
+                var pickr = new Pickr({
+                    el: $(".pickr")[0],
+                    theme: "classic",
+                    swatches: null,
+                    defaultRepresentation: "RGBA",
+                    default: element.value,
+                    comparison: false,
+                    components: {
+                        preview: true,
+                        opacity: true,
+                        hue: true,
+                        interaction: {
+                            hex: true,
+                            rgba: true,
+                            hsva: false,
+                            input: true,
+                            clear: true,
+                            cancel: true,
+                            save: true
+                        }
+                    }
+                });
             });
         });
     </script>
@@ -95,7 +118,7 @@
                         .toString(0);
                     //console.log("change", current_color);
                     $input.val(current_color).trigger("change");
-                CustomElement.setValue(color
+                    CustomElement.setValue(color
                         .toRGBA()
                         .toString(0));
                 });
