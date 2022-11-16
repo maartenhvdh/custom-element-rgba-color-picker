@@ -40,8 +40,10 @@
 
     <script>
         $(document).ready(function () {
+            var $input = $("input.pickr-field");
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
+                $input.val(element.value)
             });
         });
     </script>
