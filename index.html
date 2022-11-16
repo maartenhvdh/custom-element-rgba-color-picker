@@ -43,7 +43,7 @@
             var $input = $("input.pickr-field");
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
-                $input.val(element.value)
+                $input.val(element.value).trigger("change");
             });
         });
     </script>
@@ -85,19 +85,19 @@
                     current_color = instance
                         .getSelectedColor()
                         .toRGBA()
-                        .toString();
+                        .toString(0);
                     //console.log("cancel", current_color);
                     $input.val(current_color).trigger("change");
                 })
                 .on("change", function (color, instance) {
                     current_color = color
                         .toRGBA()
-                        .toString();
+                        .toString(0);
                     //console.log("change", current_color);
                     $input.val(current_color).trigger("change");
                 CustomElement.setValue(color
                         .toRGBA()
-                        .toString(3));
+                        .toString(0));
                 });
             //
         });
