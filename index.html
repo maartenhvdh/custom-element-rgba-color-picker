@@ -7,7 +7,6 @@
     <title> Custom Element - Accessibility Checker</title>
     <!-- Kentico Custom elements API-->
     <link rel="stylesheet" href="custom-element.css" />
-    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <script src="https://app.kontent.ai/js-api/custom-element/v1/custom-element.min.js"></script>
@@ -44,29 +43,6 @@
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
                 $input.val(element.value).trigger("change");
-
-                var pickr = new Pickr({
-                    el: $(".pickr")[0],
-                    theme: "classic",
-                    swatches: null,
-                    defaultRepresentation: "RGBA",
-                    default: element.value,
-                    comparison: false,
-                    components: {
-                        preview: true,
-                        opacity: true,
-                        hue: true,
-                        interaction: {
-                            hex: true,
-                            rgba: true,
-                            hsva: false,
-                            input: true,
-                            clear: true,
-                            cancel: true,
-                            save: true
-                        }
-                    }
-                });
             });
         });
     </script>
