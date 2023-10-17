@@ -40,12 +40,11 @@
     <script>
         $(document).ready(function () {
             var $input = $("input.pickr-field");
+            var $button = $(".pcr-button")[0];
             CustomElement.init((element, _context) => {
                 CustomElement.setHeight(300);
-                console.log("test maarten")
-                console.log(element)
-                console.log(element.value)
                 $input.val(element.value).trigger("change");
+                $button.style.setProperty("--pcr-color", element.value)
             });
         });
     </script>
@@ -77,9 +76,6 @@
                     }
                 }
             });
-            console.log("test")
-            console.log(current_color)
-            pickr.setColor(current_color)
             //
             pickr
                 .on("clear", function (instance) {
