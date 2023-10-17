@@ -46,7 +46,7 @@
                 $input.val(element.value).trigger("change");
                 console.log($button)
                 console.log($(".pcr-button")[0])
-                $button.style.setProperty("--pcr-color", element.value)
+                $(".pcr-button")[0].style.setProperty("--pcr-color", element.value)
             });
         });
     </script>
