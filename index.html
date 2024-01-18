@@ -86,7 +86,7 @@
                 .on("cancel", function (instance) {
                     current_color = instance
                         .getSelectedColor()
-                        .toRGBA()
+                        .toHEXA()
                         .toString(0);
                     //console.log("cancel", current_color);
                     $input.val(current_color).trigger("change");
@@ -94,7 +94,7 @@
                 })
                 .on("change", function (color, instance) {
                     current_color = color
-                        .toRGBA()
+                        .toHEXA()
                         .toString(0);
                     //console.log("change", current_color);
                     $input.val(current_color).trigger("change");
